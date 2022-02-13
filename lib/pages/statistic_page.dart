@@ -11,27 +11,7 @@ class StatisticPage extends StatelessWidget {
         title: Text("Статистика"),
 
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.green,
-                child: IconButton(onPressed: () {}, icon: Icon(Icons.music_note)),
-              ),
-              Container(
-                color: Colors.green,
-                child: IconButton(onPressed: () {}, icon: Icon(Icons.music_note)),
-              )
-            ],
-          )
-        ],
-      )
-    );
+      );
   }
 }
 

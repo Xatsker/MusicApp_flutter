@@ -3,7 +3,6 @@ import 'package:music_app/pages/home_page.dart';
 import 'package:music_app/pages/practise_page.dart';
 import 'package:music_app/pages/statistic_page.dart';
 import 'package:music_app/pages/theory_page.dart';
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
