@@ -18,13 +18,13 @@ class PostTile extends StatelessWidget {
       onTap: onTileTap,
       child: Container(
       width: 300,
-      height: 100,
+      height: 130,
       child: Card(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(top: 20),
         color: tileColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 100,
+            //horizontal: 50,
             vertical: 40,
           ),
           child: Column(
@@ -35,6 +35,7 @@ class PostTile extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

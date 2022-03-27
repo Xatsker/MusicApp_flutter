@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:music_app/data/app_data.dart';
+import 'package:music_app/pages/other/developer_page.dart';
+import 'package:music_app/pages/other/settings_page.dart';
+import 'package:music_app/pages/practice/practice_page.dart';
+import 'package:music_app/pages/theory/theory_page.dart';
+import 'package:music_app/pages/bottom_navigation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage ({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
 
@@ -12,10 +17,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Главная"),
-        backgroundColor: const Color.fromRGBO(2, 119, 189, 1),
+        centerTitle: true,
+        backgroundColor: Colors.indigo,
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.info)),
+          IconButton(onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage())
+            );
+          }, icon: const Icon(Icons.settings)),
+          IconButton(onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DeveloperPage())
+            );
+          }, icon: const Icon(Icons.info)),
         ],
       ),
       body: Column(
@@ -41,28 +57,34 @@ class HomePage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TheoryPage())
+              );
             },
             child: const Text('ТЕОРИЯ', style: TextStyle(
               fontFamily: "Roboto",
               letterSpacing: 1.5,
             ),),
             style: ElevatedButton.styleFrom(
-                fixedSize: const Size(328, 50), primary: mainColor),
+                fixedSize: const Size(328, 50), primary: Colors.indigo),
           ),
           const SizedBox(
             height: 33,
           ),
           ElevatedButton(
             onPressed: () {
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  PracticePage())
+              );
             },
             child: const Text('ПРАКТИКА', style: TextStyle(
               fontFamily: "Roboto",
               letterSpacing: 1.5,
             ),),
             style: ElevatedButton.styleFrom(
-                fixedSize: const Size(328, 50), primary: mainColor),
+                fixedSize: const Size(328, 50), primary: Colors.indigo),
           ),
         ],
       ),

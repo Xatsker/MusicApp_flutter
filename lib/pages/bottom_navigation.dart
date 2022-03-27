@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/pages/home_page.dart';
-import 'package:music_app/pages/practise_page.dart';
-import 'package:music_app/pages/statistic_page.dart';
-import 'package:music_app/pages/theory_page.dart';
+import 'package:music_app/pages/practice/practice_page.dart';
+import 'package:music_app/pages/statistic/statistic_page.dart';
+import 'package:music_app/pages/theory/theory_page.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final screens = [
     HomePage(),
     TheoryPage(),
-    PractisePage(),
+    PracticePage(),
     StatisticPage(),
   ];
 
@@ -29,32 +30,48 @@ class _BottomNavigationState extends State<BottomNavigation> {
         index: currentIndex,
         children: screens,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: mainColor,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey[900],
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Главная",
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.menu_book_outlined),
-            label: "Теория",
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.handyman),
-            label: "Практика",
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.stacked_bar_chart),
-            label: "Статистика",
-          )
-        ],
+      bottomNavigationBar: SalomonBottomBar(
+        margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+          vertical: 40,
+        ),
+      currentIndex: currentIndex,
+      onTap: (index) => setState(() => currentIndex = index),
+      items: [
+      SalomonBottomBarItem(
+      selectedColor: mainColor,
+      icon: const Icon(
+      Icons.home,
+      size: 25,
       ),
+      title: const Text('Главная'),
+      ),
+      SalomonBottomBarItem(
+        selectedColor: mainColor,
+        icon: const Icon(
+          Icons.menu_book_outlined,
+          size: 25,
+        ),
+        title: const Text('Теория'),
+      ),
+      SalomonBottomBarItem(
+        selectedColor: mainColor,
+        icon: const Icon(
+          Icons.handyman,
+          size: 25,
+        ),
+        title: const Text('Практика'),
+      ),
+      SalomonBottomBarItem(
+        selectedColor: mainColor,
+        icon: const Icon(
+          Icons.stacked_bar_chart,
+          size: 25,
+        ),
+        title: const Text('Статистика'),
+      ),
+      ],
+    ),
     );
   }
 }
