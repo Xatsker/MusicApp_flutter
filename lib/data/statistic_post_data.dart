@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:music_app/models/statistic_post_model.dart';
-import 'package:music_app/models/theory_post_model.dart';
 
 class StatisticData extends ChangeNotifier {
   static final statistics = [

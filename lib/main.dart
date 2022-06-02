@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:music_app/data/statistic_post_data.dart';
 import 'package:music_app/data/theory_posts/about_keys.dart';
 import 'package:music_app/data/theory_posts/alto_key.dart';
@@ -15,6 +15,7 @@ import 'package:music_app/models/statistic_post_model.dart';
 import 'package:music_app/pages/home_page.dart';
 import 'package:music_app/pages/main_page.dart';
 import 'package:music_app/pages/practice/practice_page.dart';
+import 'package:music_app/pages/practice/treble_practise_page.dart';
 import 'package:music_app/pages/statistic/statistic_page.dart';
 import 'package:music_app/pages/theory/theory_categories_page.dart';
 import 'package:music_app/pages/theory/theory_main_page.dart';
@@ -45,6 +46,12 @@ void main() async{
           '/theory': (context) => TheoryPage(),
           '/practise': (context) => PracticePage(),
           '/statistic': (context) => StatisticPage(),
+
+
+          '/treble': (context) => TestPractisePage.treble(),
+          '/alt': (context) => TestPractisePage.alto(),
+          '/bass': (context) => TestPractisePage.bass(),
+
           TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
           //theory_post_pages_route
           FromAuthor.route: (context) => FromAuthor(),

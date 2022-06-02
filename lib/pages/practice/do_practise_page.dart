@@ -6,23 +6,23 @@ import 'package:piano/piano.dart';
 import 'package:provider/provider.dart';
 import 'note_logic.dart';
 
-class BassPractisePage extends StatefulWidget {
+class AltoPractisePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => TestPractisePageState(
-      clef: Clef.Bass,
-      testType: "Басовый ключ",
+      clef: Clef.Alto,
+      testType: "Ключ До",
       svgSource: "assets/images/Basoviy.svg");
 }
 
-class BassPractisePageState extends State<BassPractisePage> {
-  BassPractisePageState({Key? key});
+class AltoPractisePageState extends State<AltoPractisePage> {
+  AltoPractisePageState({Key? key});
 
   late NoteTestRunner runner;
 
   @override
   void initState() {
 //
-//   var noteInterval = ModalRoute.of(context)?.settings.arguments as NoteRange;
+//     var noteInterval = ModalRoute.of(context)?.settings.arguments as NoteRange;
     var noteInterval = NoteRange(
         NotePosition(note: Note.C), NotePosition(note: Note.C, octave: 5));
 
@@ -40,7 +40,7 @@ class BassPractisePageState extends State<BassPractisePage> {
     ));
 
     Provider.of<StatisticData>(context, listen: false).addFromScreen(
-        "Басовый ключ",
+        "Ключ До",
         SvgPicture.asset("assets/images/Basoviy.svg"),
         runner.score,
         runner.userAnswer.length - runner.score);
@@ -60,20 +60,23 @@ class BassPractisePageState extends State<BassPractisePage> {
         body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
-            child: Text("Басовый ключ",
-                style: Theme.of(context).textTheme.headline3),
+            child:
+                Text("Ключ До", style: Theme.of(context).textTheme.headline3),
           ),
           SizedBox(height: 70),
           ClefImage(
-              clef: Clef.Bass,
-              noteRange: NoteRange.forClefs([Clef.Bass]),
-              noteImages:
-                  // (runner.currentNote == null)
-                  //     ? []
-                  //     :
-                  [
-                NoteImage(notePosition: NotePosition(note: Note.A, octave: 3)),
-              ],
+              clef: Clef.Alto,
+              noteRange: NoteRange.forClefs([Clef.Alto]),
+              // NoteRange(
+              //     NotePosition(
+              //       note: Note.A,
+              //     ),
+              //     NotePosition(note: Note.B)),
+              noteImages: (runner.currentNote == null)
+                  ? []
+                  : [
+                      NoteImage(notePosition: runner.currentNote!),
+                    ],
               clefColor: Colors.black,
               noteColor: Colors.black,
               size: Size(MediaQuery.of(context).size.width - 10, 130)),

@@ -4,14 +4,16 @@ import 'package:piano/piano.dart';
 
 class NoteTestRunner {
   int _score = 0;
-  bool isRun = false;
+  bool _isRun = false;
   NotePosition? _currentNote;
+  int _octave = 4;
 
   NotePosition? get currentNote => _currentNote;
 
-  Function onTick;
-  Function onTimeEnd;
-  Function onGenerateNote;
+  final Function onTick;
+  final Function onTimeEnd;
+  final Function onGenerateNote;
+  final NoteRange noteInterval;
 
   List<NotePosition> _noteGenerated = [];
 
@@ -31,19 +33,22 @@ class NoteTestRunner {
 
   NoteTestRunner(int this._timeForTest,
       {required Function this.onGenerateNote,
-        required Function this.onTick,
-        required Function this.onTimeEnd})
-      : assert(_timeForTest > 0);
-
-
+      required Function this.onTick,
+      required Function this.onTimeEnd,
+      required NoteRange this.noteInterval})
+      : assert(_timeForTest > 0) {
+    // this.noteInterval = NoteRange(
+    //     NotePosition(note: Note.C), NotePosition(note: Note.C, octave: 5));
+  }
 
   void start_test() {
-    if (isRun) return;
-      _score = 0;
-      _noteAnswer.clear();
-      _noteGenerated.clear();
+    var wqe = NoteRange.forClefs([Clef.Bass]);
+    if (_isRun) return;
+    _score = 0;
+    _noteAnswer.clear();
+    _noteGenerated.clear();
     _seconds = _timeForTest;
-    isRun = true;
+    _isRun = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       onTick();
       _seconds--;
@@ -60,7 +65,7 @@ class NoteTestRunner {
   void checkAnswer(NotePosition note) {
     print(note.toString());
 
-    if (!isRun || _currentNote == null) return;
+    if (!_isRun || _currentNote == null) return;
 
     _noteAnswer.add(note);
     if (_currentNote == note) _score++;
@@ -70,15 +75,20 @@ class NoteTestRunner {
   }
 
   void End() {
-    isRun = false;
+    _isRun = false;
     _timer?.cancel();
   }
 
   void _genNextNote() {
     // _currentNote = (_currentNote == NotePosition.middleC) ? NotePosition(note: Note.D, octave: 4):NotePosition.middleC; //change to random
-    _currentNote = NotePosition(note: _randomNote());
+    var range = noteInterval.naturalPositions;
+    
+    _currentNote = range[Random().nextInt(range.length)];
+        // NotePosition(note: _randomNote());
 
     _noteGenerated.add(_currentNote!);
+    //print(range);
+    print('currentNote: ''${_currentNote}');
   }
 
   Note _randomNote() {
