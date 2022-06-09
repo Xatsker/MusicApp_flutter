@@ -44,7 +44,7 @@ Future main() async{
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.indigo),
-        initialRoute: FirebaseMain.route,
+        initialRoute: '/',
         routes: {
           '/': (context) => MainPage(),
           '/home': (context) => HomePage(),
