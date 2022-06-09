@@ -12,6 +12,8 @@ import 'package:music_app/data/theory_posts/sounds.dart';
 import 'package:music_app/data/theory_posts/tones.dart';
 import 'package:music_app/models/screens.dart';
 import 'package:music_app/models/statistic_post_model.dart';
+import 'package:music_app/pages/firebasetest/firebase_main.dart';
+import 'package:music_app/pages/firebasetest/user_page.dart';
 import 'package:music_app/pages/home_page.dart';
 import 'package:music_app/pages/main_page.dart';
 import 'package:music_app/pages/practice/practice_page.dart';
@@ -42,7 +44,7 @@ Future main() async{
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.indigo),
-        initialRoute: '/',
+        initialRoute: FirebaseMain.route,
         routes: {
           '/': (context) => MainPage(),
           '/home': (context) => HomePage(),
@@ -56,7 +58,8 @@ Future main() async{
           '/bass': (context) => TestPractisePage.bass(),
 
           TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
-          //theory_post_pages_route
+
+          //Theory_post_pages_route
           FromAuthor.route: (context) => FromAuthor(),
           AboutKeys.route: (context) => AboutKeys(),
           AltoKey.route: (context) => AltoKey(),
@@ -68,6 +71,10 @@ Future main() async{
           Octaves.route: (context) => Octaves(),
           Sounds.route: (context) => Sounds(),
           Tones.route: (context) => Tones(),
+
+          //Firebase_Test
+          FirebaseMain.route: (context) => FirebaseMain(),
+          UserPage.route: (context) => UserPage()
         },
       ),
     ));
