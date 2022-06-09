@@ -22,8 +22,12 @@ class TheoryCategoriesPage extends StatelessWidget {
           Container(
             //margin: const EdgeInsets.only(top: 50),
             height: MediaQuery.of(context).size.height * 0.15,
-            child: const Text('Sections', style:  TextStyle(
-                fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal),
+            child: const Text(
+              'Sections',
+              style: TextStyle(
+                  fontFamily: "ReenieBeanie",
+                  fontSize: 70,
+                  fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
           ),
@@ -32,17 +36,18 @@ class TheoryCategoriesPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListView.builder(
-                    itemCount: categoryData.length,
-                    itemBuilder: (_, index) {
-                      if(argumentId == categoryData[index].sectionId) {
-                        return PostTile(tileColor: Theme
-                          .of(context)
-                          .primaryColor,
-                          postTitle: categoryData[index].title,
-                          onTileTap: () => Navigator.of(context).pushNamed(categoryData[index].pathToPost, arguments: categoryData[index].title));
-                      }
-                      return Container();
-                    }),
+                  itemCount: categoryData.length,
+                  itemBuilder: (_, index) {
+                    if (argumentId == categoryData[index].sectionId) {
+                      return PostTile(
+                          tileColor: Theme.of(context).primaryColor,
+                          postTitle: categoryData[index].title.toUpperCase(),
+                          onTileTap: () => Navigator.of(context).pushNamed(
+                              categoryData[index].pathToPost,
+                              arguments: categoryData[index].title));
+                    }
+                    return Container();
+                  }),
             ),
           ),
         ],
