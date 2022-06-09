@@ -21,13 +21,16 @@ import 'package:music_app/pages/theory/theory_categories_page.dart';
 import 'package:music_app/pages/theory/theory_main_page.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'data/theory_posts/methronome.dart';
 import 'data/theory_posts/treble_key.dart';
 
 late Box box;
 
-void main() async{
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await Hive.initFlutter();
   Hive.registerAdapter<Statistic>(StatisticAdapter());
   box = await Hive.openBox<Statistic>("statistic");

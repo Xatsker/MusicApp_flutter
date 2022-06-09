@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/pages/practice/bass_practise_page.dart';
-import 'package:music_app/pages/practice/treble_practise_page.dart';
 import 'package:music_app/pages/statistic/statistic_page.dart';
 import 'package:piano/piano.dart';
-
-import 'do_practise_page.dart';
 
 class PracticePage extends StatefulWidget {
   PracticePage({Key? key}) : super(key: key);
@@ -152,7 +148,7 @@ class _PracticePageState extends State<PracticePage> {
             },
 
             child: const Text(
-              'КЛЮЧ ДО',
+              'АЛЬТОВЫЙ КЛЮЧ',
               style: TextStyle(
                 fontFamily: "Roboto",
                 letterSpacing: 1.5,

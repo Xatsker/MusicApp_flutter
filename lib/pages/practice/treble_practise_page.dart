@@ -34,7 +34,7 @@ class TestPractisePage extends StatefulWidget {
   TestPractisePage.alto({
     Key? key,
   })  : clef = Clef.Alto,
-        testType = "Ключ До",
+        testType = "Альтовый ключ",
         svgSource = "assets/images/Altoviy.svg",
         super(key: key);
 
@@ -124,27 +124,13 @@ class TestPractisePageState extends State<TestPractisePage> {
               //     ),
               //     NotePosition(note: Note.B)),
               noteImages: (runner.currentNote == null)
-                  ? [
-                    /*  NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 2)),
-                      NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 3)),
-                      NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 4)),
-                      NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 5)),
-                      NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 6)),
-                      NoteImage(
-                          notePosition: NotePosition(note: Note.C, octave: 7)),*/
-                      // NoteImage(notePosition: NotePosition(note: Note.C, octave: 8)),
-                    ]
+                  ? []
                   : [
                       NoteImage(notePosition: runner.currentNote!),
                     ],
               clefColor: Colors.black,
               noteColor: Colors.black,
-              size: Size(MediaQuery.of(context).size.width - 10, 90)),
+              size: Size(MediaQuery.of(context).size.width, 150)),
           Text(runner.time.toString()),
           ElevatedButton(
             style: ElevatedButton.styleFrom(primary: Colors.indigo),
