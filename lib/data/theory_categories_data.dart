@@ -2,7 +2,7 @@ import 'package:music_app/models/theory_category.dart';
 
 class TheoryCategoriesData {
   static final List<TheoryCategory> categories = [
-    TheoryCategory(1, 1, "От Автора", '/from_author'),
+    TheoryCategory(1, 1, "Предисловие", '/from_author'),
     TheoryCategory(2, 1, "Звуки, Звукоряд", '/sounds'),
     TheoryCategory(2, 2, "Октавы", '/octaves'),
     TheoryCategory(2, 3, "Тона", '/tones'),

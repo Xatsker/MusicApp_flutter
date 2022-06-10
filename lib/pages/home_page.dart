@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 300,
                 ),
-                SvgPicture.asset("assets/images/Skripichniy.svg"),
+                SvgPicture.asset("assets/images/treble_key/Skripichniy.svg"),
                 const Text('Notogram', style: TextStyle(
                     fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal),
                   textAlign: TextAlign.center,

@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:music_app/models/firebase_theory_post_model.dart';
 
-class AboutKeys extends StatefulWidget {
-  static const route = '/about_keys';
+import '../../../models/firebase_theory_post_model.dart';
+
+class AltoKey extends StatefulWidget {
+  static const route = '/alto_key';
 
   @override
-  State<AboutKeys> createState() => _AboutKeysState();
+  State<AltoKey> createState() => _AltoKeyState();
 }
 
-class _AboutKeysState extends State<AboutKeys> {
+class _AltoKeyState extends State<AltoKey> {
   @override
   Widget build(BuildContext context) {
     final title = ModalRoute.of(context)!.settings.arguments as String;
@@ -48,8 +49,10 @@ class _AboutKeysState extends State<AboutKeys> {
         child: Column(
           children: [
             Text(firepost.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+            Text('id: ${firepost.id}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
             const SizedBox(height: 24),
-            Text(firepost.text)
+            Text(firepost.text),
+            Text(firepost.imagePath)
           ],
         ),
       ),
@@ -59,7 +62,7 @@ class _AboutKeysState extends State<AboutKeys> {
   Future<FirebasePostContent?> readPost() async {
     //Get single document by ID
     final docUser =
-    FirebaseFirestore.instance.collection('/content').doc('about_keys');
+    FirebaseFirestore.instance.collection('/content').doc('alto_key');
     final snapshot = await docUser.get();
 
     if (snapshot.exists) {
