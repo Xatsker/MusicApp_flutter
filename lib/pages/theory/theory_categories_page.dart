@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:music_app/data/theory_categories_data.dart';
 import 'package:music_app/widgets/post_tile_widget.dart';
 
+import '../../widgets/modifiedTitleText.dart';
+
 class TheoryCategoriesPage extends StatelessWidget {
   TheoryCategoriesPage({Key? key}) : super(key: key);
   static const route = '/theory-categories';
@@ -12,6 +14,7 @@ class TheoryCategoriesPage extends StatelessWidget {
     final argumentId = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text('Разделы'),
         centerTitle: true,
       ),
@@ -22,14 +25,7 @@ class TheoryCategoriesPage extends StatelessWidget {
           Container(
             //margin: const EdgeInsets.only(top: 50),
             height: MediaQuery.of(context).size.height * 0.15,
-            child: const Text(
-              'Sections',
-              style: TextStyle(
-                  fontFamily: "ReenieBeanie",
-                  fontSize: 70,
-                  fontWeight: FontWeight.normal),
-              textAlign: TextAlign.center,
-            ),
+            child: ModifiedTitleText('Sections'),
           ),
           Container(
             height: MediaQuery.of(context).size.height * 0.55,

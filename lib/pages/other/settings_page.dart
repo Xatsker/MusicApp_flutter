@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/theme/config.dart';
+import 'package:music_app/widgets/modifiedTitleText.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -8,9 +8,7 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-
 class _SettingsPageState extends State<SettingsPage> {
-
   bool _darkModeToggled = false;
   bool _soundModeToggled = false;
 
@@ -28,78 +26,38 @@ class _SettingsPageState extends State<SettingsPage> {
         backgroundColor: Colors.indigo,
       ),
       body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-        width: 240,
-        child:
-        DropdownButtonFormField<String>(
-          decoration: InputDecoration(
-            labelText: "Обозначения нот",
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(width: 3, color: Colors.indigo),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ModifiedTitleText('Settings'),
+            const SizedBox(
+              height: 40,
             ),
-          ),
-            value: notesSelectedItem,
-            items: notesItems.map((item) => DropdownMenuItem<String>(
-                value: item,
-                child: Text(item),
-            ))
-            .toList(),
-          onChanged: (item) => setState(() => notesSelectedItem = item),
-        ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        SwitchListTile(
-          title: const Text("Тёмная тема"),
-          value: _darkModeToggled,
-          activeColor: Colors.indigo,
-          onChanged: (bool value) {
-            setState(() => _darkModeToggled = value);
-          },
-          secondary: const Icon(Icons.dark_mode),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        SwitchListTile(
-          title: const Text("Звук"),
-          value: _soundModeToggled,
-          activeColor: Colors.indigo,
-          onChanged: (bool value) {
-            setState(() => _soundModeToggled = value);
-          },
-          secondary: const Icon(Icons.surround_sound),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        SizedBox(
-          width: 240,
-          child:
-          DropdownButtonFormField<String>(
-            decoration: InputDecoration(
-              labelText: "Язык",
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 3, color: Colors.indigo),
-              ),
+            SwitchListTile(
+              title: const Text("Тёмная тема"),
+              value: _darkModeToggled,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (bool value) {
+                setState(() => _darkModeToggled = value);
+              },
+              secondary: Icon(Icons.dark_mode),
             ),
-            value: languageSelectedItem,
-            items: languageItems.map((item) => DropdownMenuItem<String>(
-              value: item,
-              child: Text(item),
-            ))
-                .toList(),
-            onChanged: (item) => setState(() => languageSelectedItem = item),
-          ),
-        ),
-      ]
-      ),
+            const SizedBox(
+              height: 30,
+            ),
+            SwitchListTile(
+              title: const Text("Звук"),
+              value: _soundModeToggled,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (bool value) {
+                setState(() => _soundModeToggled = value);
+              },
+              secondary: Icon(Icons.surround_sound),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+          ]),
     );
   }
 }

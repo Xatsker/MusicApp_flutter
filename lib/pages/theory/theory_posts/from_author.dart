@@ -44,7 +44,7 @@ class _FromAuthorState extends State<FromAuthor> {
         child: Card(
           elevation: 3,
           margin: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Column(
             children: [
               Padding(
@@ -62,7 +62,12 @@ class _FromAuthorState extends State<FromAuthor> {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              SvgPicture.asset(firepost.imagePath)
+              Container(
+                height: 250,
+                width: double.infinity,
+                child: SvgPicture.asset(firepost.imagePath, fit: BoxFit.contain)
+              ),
+
             ],
           ),
         ),

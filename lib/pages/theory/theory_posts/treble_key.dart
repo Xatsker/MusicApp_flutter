@@ -43,7 +43,7 @@ class _TrebleKeyState extends State<TrebleKey> {
         child: Card(
           elevation: 3,
           margin: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Column(
             children: [
               Padding(

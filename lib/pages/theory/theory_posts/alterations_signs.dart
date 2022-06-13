@@ -43,7 +43,7 @@ class _AlterationSignsState extends State<AlterationSigns> {
         child: Card(
           elevation: 3,
           margin: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Column(
             children: [
               Padding(
@@ -64,7 +64,10 @@ class _AlterationSignsState extends State<AlterationSigns> {
               Container(
                 height: 250,
                 width: double.infinity,
-                child: Image.asset(firepost.imagePath, fit: BoxFit.contain),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(firepost.imagePath, fit: BoxFit.fill),
+                ),
               ),
             ],
           ),

@@ -4,16 +4,15 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../models/screens.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class Navbar extends StatefulWidget {
+  const Navbar({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<Navbar> createState() => _NavbarState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
-  Color mainColor = const Color.fromRGBO(2, 119, 189, 1);
   @override
   Widget build(BuildContext context) {
     final screenData = Provider.of<Screens>(context);
@@ -31,7 +30,7 @@ class _MainPageState extends State<MainPage> {
         onTap: (index) => setState(() => currentIndex = index),
         items: [
           SalomonBottomBarItem(
-            selectedColor: mainColor,
+            selectedColor: Theme.of(context).primaryColor,
             icon: const Icon(
               Icons.home,
               size: 25,
@@ -39,7 +38,7 @@ class _MainPageState extends State<MainPage> {
             title: const Text('Главная'),
           ),
           SalomonBottomBarItem(
-            selectedColor: mainColor,
+            selectedColor: Theme.of(context).primaryColor,
             icon: const Icon(
               Icons.menu_book_outlined,
               size: 25,
@@ -47,7 +46,7 @@ class _MainPageState extends State<MainPage> {
             title: const Text('Теория'),
           ),
           SalomonBottomBarItem(
-            selectedColor: mainColor,
+            selectedColor: Theme.of(context).primaryColor,
             icon: const Icon(
               Icons.handyman,
               size: 25,
@@ -55,7 +54,7 @@ class _MainPageState extends State<MainPage> {
             title: const Text('Практика'),
           ),
           SalomonBottomBarItem(
-            selectedColor: mainColor,
+            selectedColor: Theme.of(context).primaryColor,
             icon: const Icon(
               Icons.stacked_bar_chart,
               size: 25,

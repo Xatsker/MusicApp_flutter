@@ -133,7 +133,7 @@ class TestPractisePageState extends State<TestPractisePage> {
               size: Size(MediaQuery.of(context).size.width, 150)),
           Text(runner.time.toString()),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Colors.indigo),
+            style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
             onPressed: () => runner.start_test(),
             child: Text("НАЧАТЬ"),
           ),

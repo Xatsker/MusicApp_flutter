@@ -30,6 +30,7 @@ class StatisticPosts extends StatelessWidget {
         itemBuilder: (_,index) =>
             SafeArea(
               child: Card(
+                color: Theme.of(context).cardColor,
                 shadowColor: Colors.indigo,
                 elevation: 2.0,
                 shape: RoundedRectangleBorder(

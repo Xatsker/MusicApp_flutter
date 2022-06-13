@@ -43,7 +43,7 @@ class _AltoKeyState extends State<AltoKey> {
         child: Card(
           elevation: 3,
           margin: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           child: Column(
             children: [
               Padding(

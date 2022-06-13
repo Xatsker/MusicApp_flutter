@@ -4,6 +4,7 @@ import 'package:music_app/pages/statistic/single_statistic_page.dart';
 import 'package:music_app/widgets/post_tile_widget.dart';
 
 import '../../models/theory_post_model.dart';
+import '../../widgets/modifiedTitleText.dart';
 
 class StatisticPage extends StatelessWidget {
   StatisticPage({Key? key}) : super(key: key);
@@ -24,13 +25,10 @@ class StatisticPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Statistic', style: TextStyle(
-                fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal),
-              textAlign: TextAlign.center,
-            ),
+            ModifiedTitleText('Statistic'),
             for (int i = 0; i < statisticPost.length; i++)
               PostTile(
-                tileColor: Colors.indigo,
+                tileColor: Theme.of(context).primaryColor,
                 postTitle: statisticPost[i].title.toUpperCase(),
                 onTileTap: () => Navigator.push(
                   context,
