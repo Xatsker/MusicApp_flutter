@@ -79,6 +79,7 @@ flutter:
     - assets/images/sounds/
     - assets/images/tones/
     - assets/images/treble_key/
+    - assets/images/alterations_signs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

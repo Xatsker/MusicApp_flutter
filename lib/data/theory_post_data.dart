@@ -22,7 +22,7 @@ class TheoryPostData {
         Эти семь нот циклически повторяются на разной высоте.
         То есть, после Си опять идет До: До Ре Ми Фа Соль Ля Си До Ре Ми Фа Соль Ля Си До Ре Ми ... и так далее.
         '''),
-    TheoryPost('Скрипичный ключ', 1, SvgPicture.asset("assets/images/Skripichniy.svg"), Image.asset("assets/images/skrip-kluch.png"),
+    TheoryPost('Скрипичный ключ', 1, SvgPicture.asset("assets/images/Skripichniy.svg"), Image.asset("assets/images/treble_key/skrip-kluch.png"),
         '''
         Скрипичный ключ (соль) — это знак линейной нотации, который пишется на нотном стане, начиная со второй линии.
         Он показывает, что именно эта линия получает значение ключа. То есть «соль» первой октавы.
@@ -32,7 +32,7 @@ class TheoryPostData {
           - ноты для скрипки, гитары, ударных и духовых инструментов;
           - ноты для правой руки фортепиано.
         '''),
-    TheoryPost('Басовый ключ', 2, SvgPicture.asset("assets/images/Basoviy.svg"), Image.asset("assets/images/bas-kluch.jpg"),
+    TheoryPost('Басовый ключ', 2, SvgPicture.asset("assets/images/Basoviy.svg"), Image.asset("assets/images/bass_key/bas-kluch.jpg"),
         '''
         Басовый ключ (фа) — это знак линейной нотации, который пишется на четвертой линии нотоносца. Предназначен для низкого звучания.
         
@@ -48,7 +48,7 @@ class TheoryPostData {
         Ему следует уделить отдельное внимание, так как он имеет особую форму применения. Используется для обозначения ноты «До» первой октавы.
         В нотном стане ключ «До» закрепляется следующим образом.
         '''),
-    TheoryPost('Теноровый', 4, SvgPicture.asset("assets/images/Altoviy.svg"), Image.asset("assets/images/do-kluch.png"),
+    TheoryPost('Теноровый', 4, SvgPicture.asset("assets/images/Altoviy.svg"), Image.asset("assets/images/alto_key/do-kluch.png"),
         '''
         Кроме общераспространенных скрипичного и басового ключей, существует менее употребительный в наше время ключ «До».
         Ему следует уделить отдельное внимание, так как он имеет особую форму применения. Используется для обозначения ноты «До» первой октавы.

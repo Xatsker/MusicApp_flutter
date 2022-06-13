@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../models/firebase_theory_post_model.dart';
 
@@ -13,19 +14,13 @@ class Sounds extends StatefulWidget {
 class _SoundsState extends State<Sounds> {
   @override
   Widget build(BuildContext context) {
-    final title = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        centerTitle: true,
-      ),
       body: FutureBuilder<FirebasePostContent?>(
         future: readPost(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Something go wrong ${snapshot.error}');
-          }
-          else if (snapshot.hasData) {
+          } else if (snapshot.hasData) {
             final post = snapshot.data;
             return post == null
                 ? const Center(child: Text('No post'))
@@ -35,25 +30,45 @@ class _SoundsState extends State<Sounds> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back)),
     );
   }
 
   Widget buildPost(FirebasePostContent firepost) {
-    return Card(
-      color: Colors.white,
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.5,
-        margin: EdgeInsets.all(16),
-        padding: EdgeInsets.all(16),
-        width: double.infinity,
-        child: Column(
-          children: [
-            Text(firepost.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-            Text('id: ${firepost.id}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-            const SizedBox(height: 24),
-            Text(firepost.text),
-            Text(firepost.imagePath)
-          ],
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Card(
+          elevation: 3,
+          margin: EdgeInsets.all(16),
+          color: Colors.white,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  firepost.title,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                child: Text(
+                  firepost.text,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Container(
+                height: 250,
+                width: double.infinity,
+                child: Image.asset(firepost.imagePath, fit: BoxFit.contain),
+              ),
+            ],
+          ),
         ),
       ),
     );

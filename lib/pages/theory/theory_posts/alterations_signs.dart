@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../../../models/firebase_theory_post_model.dart';
 
-class AltoKey extends StatefulWidget {
-  static const route = '/alto_key';
+class AlterationSigns extends StatefulWidget {
+  static const route = '/alterations_signs';
 
   @override
-  State<AltoKey> createState() => _AltoKeyState();
+  State<AlterationSigns> createState() => _AlterationSignsState();
 }
 
-class _AltoKeyState extends State<AltoKey> {
+class _AlterationSignsState extends State<AlterationSigns> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,7 @@ class _AltoKeyState extends State<AltoKey> {
               Container(
                 height: 250,
                 width: double.infinity,
-                child: Image.asset(firepost.imagePath, fit: BoxFit.fill),
+                child: Image.asset(firepost.imagePath, fit: BoxFit.contain),
               ),
             ],
           ),
@@ -76,7 +76,7 @@ class _AltoKeyState extends State<AltoKey> {
   Future<FirebasePostContent?> readPost() async {
     //Get single document by ID
     final docUser =
-    FirebaseFirestore.instance.collection('/content').doc('alto_key');
+    FirebaseFirestore.instance.collection('/content').doc('alterations_signs');
     final snapshot = await docUser.get();
 
     if (snapshot.exists) {
