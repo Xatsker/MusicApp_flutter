@@ -31,6 +31,7 @@ import 'pages/theory/theory_posts/tones.dart';
 import 'pages/theory/theory_posts/treble_key.dart';
 
 late Box box;
+late Box settingBox;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,82 +39,76 @@ Future main() async {
   await Hive.initFlutter();
   Hive.registerAdapter<Statistic>(StatisticAdapter());
   box = await Hive.openBox<Statistic>("statistic");
-  SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-      .then((_) => runApp(MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => StatisticData()),
-              ChangeNotifierProvider(create: (_) => Screens()),
-            ],
-            child: buildMaterialApp(),
-          )));
-  }
-  class buildMaterialApp extends StatefulWidget {
-    const buildMaterialApp({Key? key}) : super(key: key);
+  settingBox = await Hive.openBox<dynamic>("setting");
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) => runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => StatisticData()),
+          ChangeNotifierProvider(create: (_) => Screens()),
+        ],
+        child: buildMaterialApp(),
+      )));
+}
 
-    @override
-    State<buildMaterialApp> createState() => _buildMaterialAppState();
-  }
+class buildMaterialApp extends StatefulWidget {
+  const buildMaterialApp({Key? key}) : super(key: key);
 
-  class _buildMaterialAppState extends State<buildMaterialApp> {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primarySwatch: Colors.indigo,
-            textTheme: TextTheme(
-              bodyLarge: TextStyle(
-                  fontFamily: "ReenieBeanie",
-                  fontSize: 70,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black),
-            ),
-          cardColor: Colors.white,
+  @override
+  State<buildMaterialApp> createState() => _buildMaterialAppState();
+}
+
+class _buildMaterialAppState extends State<buildMaterialApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        textTheme: TextTheme(
+          bodyText1: TextStyle(fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal, color: Colors.black),
         ),
-        darkTheme: ThemeData(
-            scaffoldBackgroundColor: Colors.indigo,
-            primarySwatch: Colors.teal,
-          textTheme:
-          Theme.of(context).textTheme.apply(
-            bodyColor: Colors.white,
-            displayColor: Colors.white,
-          ),
+        cardColor: Colors.white,
+      ),
+      darkTheme: ThemeData(
+          scaffoldBackgroundColor: Colors.indigo,
+          primarySwatch: Colors.teal,
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: Colors.white,
+                displayColor: Colors.white,
+              ),
           iconTheme: IconThemeData(color: Colors.white),
-          cardColor: Colors.teal
-        ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => Navbar(),
-          '/home': (context) => HomePage(),
-          '/theory': (context) => TheoryPage(),
-          '/practise': (context) => PracticePage(),
-          '/statistic': (context) => StatisticPage(),
+          cardColor: Colors.teal),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Navbar(),
+        '/home': (context) => HomePage(),
+        '/theory': (context) => TheoryPage(),
+        '/practise': (context) => PracticePage(),
+        '/statistic': (context) => StatisticPage(),
 
-          '/treble': (context) => TestPractisePage.treble(),
-          '/alt': (context) => TestPractisePage.alto(),
-          '/bass': (context) => TestPractisePage.bass(),
+        '/treble': (context) => TestPractisePage.treble(),
+        '/alt': (context) => TestPractisePage.alto(),
+        '/bass': (context) => TestPractisePage.bass(),
 
-          TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
+        TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
 
-          //Theory_post_pages_route
-          FromAuthor.route: (context) => FromAuthor(),
-          AboutKeys.route: (context) => AboutKeys(),
-          AltoKey.route: (context) => AltoKey(),
-          BassKey.route: (context) => BassKey(),
-          TrebleKey.route: (context) => TrebleKey(),
-          Durations.route: (context) => Durations(),
-          Methronome.route: (context) => Methronome(),
-          Notes.route: (context) => Notes(),
-          Octaves.route: (context) => Octaves(),
-          Sounds.route: (context) => Sounds(),
-          Tones.route: (context) => Tones(),
-          AlterationSigns.route: (context) => AlterationSigns(),
+        //Theory_post_pages_route
+        FromAuthor.route: (context) => FromAuthor(),
+        AboutKeys.route: (context) => AboutKeys(),
+        AltoKey.route: (context) => AltoKey(),
+        BassKey.route: (context) => BassKey(),
+        TrebleKey.route: (context) => TrebleKey(),
+        Durations.route: (context) => Durations(),
+        Methronome.route: (context) => Methronome(),
+        Notes.route: (context) => Notes(),
+        Octaves.route: (context) => Octaves(),
+        Sounds.route: (context) => Sounds(),
+        Tones.route: (context) => Tones(),
+        AlterationSigns.route: (context) => AlterationSigns(),
 
-          //Firebase_Test
-          FirebaseMain.route: (context) => FirebaseMain(),
-          UserPage.route: (context) => UserPage()
-        },
-      );
-    }
+        //Firebase_Test
+        FirebaseMain.route: (context) => FirebaseMain(),
+        UserPage.route: (context) => UserPage()
+      },
+    );
   }
+}

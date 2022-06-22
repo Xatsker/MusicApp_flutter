@@ -7,6 +7,7 @@ class NoteTestRunner {
   bool _isRun = false;
   NotePosition? _currentNote;
   int _octave = 4;
+  int _prevIndex = 0;
 
   NotePosition? get currentNote => _currentNote;
 
@@ -31,12 +32,13 @@ class NoteTestRunner {
 
   int get time => _seconds;
 
-  NoteTestRunner(int this._timeForTest,
-      {required Function this.onGenerateNote,
-      required Function this.onTick,
-      required Function this.onTimeEnd,
-      required NoteRange this.noteInterval})
-      : assert(_timeForTest > 0) {
+  NoteTestRunner(
+    int this._timeForTest, {
+    required Function this.onGenerateNote,
+    required Function this.onTick,
+    required Function this.onTimeEnd,
+    required NoteRange this.noteInterval,
+  }) : assert(_timeForTest > 0) {
     // this.noteInterval = NoteRange(
     //     NotePosition(note: Note.C), NotePosition(note: Note.C, octave: 5));
   }
@@ -82,13 +84,14 @@ class NoteTestRunner {
   void _genNextNote() {
     // _currentNote = (_currentNote == NotePosition.middleC) ? NotePosition(note: Note.D, octave: 4):NotePosition.middleC; //change to random
     var range = noteInterval.naturalPositions;
-    
-    _currentNote = range[Random().nextInt(range.length)];
-        // NotePosition(note: _randomNote());
+    int index = Random().nextInt(range.length);
 
+    _currentNote = range[index == _prevIndex ? Random().nextInt(range.length) : index];
+    // NotePosition(note: _randomNote());
+    _prevIndex = index;
     _noteGenerated.add(_currentNote!);
     //print(range);
-    print('currentNote: ''${_currentNote}');
+    print('currentNote: ' '${_currentNote}');
   }
 
   Note _randomNote() {

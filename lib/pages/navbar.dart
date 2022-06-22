@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:music_app/main.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -12,6 +16,23 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
+  @override
+  void initState() {
+    super.initState();
+    _saveDeviceId();
+  }
+
+  void _saveDeviceId() async {
+    var deviceInfo = DeviceInfoPlugin();
+    if (Platform.isIOS) {
+      var iosDeviceInfo = await deviceInfo.iosInfo;
+      settingBox.put('ID', iosDeviceInfo.identifierForVendor);
+    } else {
+      var androidDeviceInfo = await deviceInfo.androidInfo;
+      settingBox.put('ID', androidDeviceInfo.androidId);
+    }
+  }
+
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
