@@ -59,7 +59,7 @@ class TheoryPage extends StatelessWidget {
           letterSpacing: 1.5,
         ),
       ),
-      style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
+      // style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
     );
   }
 }

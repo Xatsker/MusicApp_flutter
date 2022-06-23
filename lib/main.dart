@@ -20,6 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'data/theme_manager.dart';
 import 'pages/theory/theory_posts/alto_key.dart';
 import 'pages/theory/theory_posts/bass_key.dart';
 import 'pages/theory/theory_posts/durations.dart';
@@ -45,6 +46,7 @@ Future main() async {
           ChangeNotifierProvider(create: (_) => StatisticData()),
           ChangeNotifierProvider(create: (_) => Screens()),
           ChangeNotifierProvider(create: (_) => NavbarProvider()),
+          ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ],
         child: buildMaterialApp(),
       )));
@@ -60,56 +62,59 @@ class buildMaterialApp extends StatefulWidget {
 class _buildMaterialAppState extends State<buildMaterialApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        textTheme: TextTheme(
-          bodyText1: TextStyle(fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal, color: Colors.black),
-        ),
-        cardColor: Colors.white,
+    return Consumer<ThemeNotifier>(
+      builder: (context, theme, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: theme.getTheme(),
+        // theme: ThemeData(
+        //   primarySwatch: Colors.indigo,
+        //   textTheme: TextTheme(
+        //     bodyText1: TextStyle(fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal, color: Colors.black),
+        //   ),
+        //   cardColor: Colors.white,
+        // ),
+        // darkTheme: ThemeData(
+        //     scaffoldBackgroundColor: Colors.indigo,
+        //     primarySwatch: Colors.teal,
+        //     textTheme: Theme.of(context).textTheme.apply(
+        //           bodyColor: Colors.white,
+        //           displayColor: Colors.white,
+        //         ),
+        //     iconTheme: IconThemeData(color: Colors.white),
+        //     cardColor: Colors.teal),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Navbar(),
+          '/home': (context) => HomePage(),
+          '/theory': (context) => TheoryPage(),
+          '/practise': (context) => PracticePage(),
+          '/statistic': (context) => StatisticPage(),
+
+          '/treble': (context) => TestPractisePage.treble(),
+          '/alt': (context) => TestPractisePage.alto(),
+          '/bass': (context) => TestPractisePage.bass(),
+
+          TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
+
+          //Theory_post_pages_route
+          FromAuthor.route: (context) => FromAuthor(),
+          AboutKeys.route: (context) => AboutKeys(),
+          AltoKey.route: (context) => AltoKey(),
+          BassKey.route: (context) => BassKey(),
+          TrebleKey.route: (context) => TrebleKey(),
+          Durations.route: (context) => Durations(),
+          Methronome.route: (context) => Methronome(),
+          Notes.route: (context) => Notes(),
+          Octaves.route: (context) => Octaves(),
+          Sounds.route: (context) => Sounds(),
+          Tones.route: (context) => Tones(),
+          AlterationSigns.route: (context) => AlterationSigns(),
+
+          //Firebase_Test
+          FirebaseMain.route: (context) => FirebaseMain(),
+          UserPage.route: (context) => UserPage()
+        },
       ),
-      darkTheme: ThemeData(
-          scaffoldBackgroundColor: Colors.indigo,
-          primarySwatch: Colors.teal,
-          textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              ),
-          iconTheme: IconThemeData(color: Colors.white),
-          cardColor: Colors.teal),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Navbar(),
-        '/home': (context) => HomePage(),
-        '/theory': (context) => TheoryPage(),
-        '/practise': (context) => PracticePage(),
-        '/statistic': (context) => StatisticPage(),
-
-        '/treble': (context) => TestPractisePage.treble(),
-        '/alt': (context) => TestPractisePage.alto(),
-        '/bass': (context) => TestPractisePage.bass(),
-
-        TheoryCategoriesPage.route: (context) => TheoryCategoriesPage(),
-
-        //Theory_post_pages_route
-        FromAuthor.route: (context) => FromAuthor(),
-        AboutKeys.route: (context) => AboutKeys(),
-        AltoKey.route: (context) => AltoKey(),
-        BassKey.route: (context) => BassKey(),
-        TrebleKey.route: (context) => TrebleKey(),
-        Durations.route: (context) => Durations(),
-        Methronome.route: (context) => Methronome(),
-        Notes.route: (context) => Notes(),
-        Octaves.route: (context) => Octaves(),
-        Sounds.route: (context) => Sounds(),
-        Tones.route: (context) => Tones(),
-        AlterationSigns.route: (context) => AlterationSigns(),
-
-        //Firebase_Test
-        FirebaseMain.route: (context) => FirebaseMain(),
-        UserPage.route: (context) => UserPage()
-      },
     );
   }
 }

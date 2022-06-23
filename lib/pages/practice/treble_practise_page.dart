@@ -137,18 +137,14 @@ class TestPractisePageState extends State<TestPractisePage> {
           ClefImage(
             clef: clef,
             noteRange: NoteRange.forClefs([clef], extended: true),
-            noteImages: (runner.currentNote == null)
-                ? []
-                : [
-                    NoteImage(notePosition: runner.currentNote!),
-                  ],
-            clefColor: Colors.black,
-            noteColor: Colors.black,
+            noteImages: (runner.currentNote == null) ? [] : [NoteImage(notePosition: runner.currentNote!)],
+            clefColor: Theme.of(context).primaryColor,
+            noteColor: Theme.of(context).primaryColor,
             size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height * (testType == 'Скрипичный ключ' ? 0.21 : 0.28)),
           ),
           Text(runner.time.toString()),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+            style: ElevatedButton.styleFrom(primary: Colors.indigo, fixedSize: Size(90, 40)),
             onPressed: () => runner.start_test(),
             child: const Text("НАЧАТЬ"),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/data/theme_manager.dart';
 import 'package:music_app/pages/navbar.dart';
 import 'package:music_app/widgets/modifiedTitleText.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     _soundModeToggled = settingBox.get('setting_sound') ?? false;
+    // WidgetsBinding.instance?.addPostFrameCallback((_) {
+    //   _darkModeToggled = Provider.of<ThemeNotifier>(context, listen: false).getTheme()?.brightness == Brightness.dark;
+    //   print(_darkModeToggled);
+    // });
+
     super.initState();
   }
 
@@ -32,6 +38,8 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final navbar = Provider.of<NavbarProvider>(context);
+    final themeProvider = Provider.of<ThemeNotifier>(context);
+    _darkModeToggled = themeProvider.getTheme()?.brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Настройки"),
@@ -43,18 +51,23 @@ class _SettingsPageState extends State<SettingsPage> {
         const SizedBox(
           height: 40,
         ),
-        // SwitchListTile(
-        //   title: const Text("Тёмная тема"),
-        //   value: _darkModeToggled,
-        //   activeColor: Theme.of(context).primaryColor,
-        //   onChanged: (bool value) {
-        //     setState(() => _darkModeToggled = value);
-        //   },
-        //   secondary: Icon(Icons.dark_mode),
-        // ),
-        // const SizedBox(
-        //   height: 30,
-        // ),
+        SwitchListTile(
+          title: const Text("Тёмная тема"),
+          value: _darkModeToggled,
+          activeColor: Theme.of(context).primaryColor,
+          onChanged: (bool value) {
+            if (!value) {
+              themeProvider.setLightMode();
+            } else {
+              themeProvider.setDarkMode();
+            }
+            setState(() => _darkModeToggled = value);
+          },
+          secondary: Icon(Icons.dark_mode),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
         SwitchListTile(
           title: const Text("Звук"),
           value: _soundModeToggled,

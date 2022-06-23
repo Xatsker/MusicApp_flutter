@@ -60,7 +60,7 @@ class _NavbarState extends State<Navbar> {
                 Icons.home,
                 size: 25,
               ),
-              title: const Text('Главная'),
+              title: Text('Главная', style: TextStyle(color: Theme.of(context).primaryColor)),
             ),
             SalomonBottomBarItem(
               selectedColor: Theme.of(context).primaryColor,

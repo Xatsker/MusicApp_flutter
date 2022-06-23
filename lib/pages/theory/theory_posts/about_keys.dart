@@ -20,15 +20,17 @@ class _AboutKeysState extends State<AboutKeys> {
             return Text('Something go wrong ${snapshot.error}');
           } else if (snapshot.hasData) {
             final post = snapshot.data;
-            return post == null
-                ? const Center(child: Text('No post'))
-                : buildPost(post);
+            return post == null ? const Center(child: Text('No post')) : buildPost(post);
           } else {
             return const Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
+          focusColor: Colors.indigo,
+          hoverColor: Colors.indigo,
+          splashColor: Colors.indigo,
+          backgroundColor: Colors.indigo,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -74,8 +76,7 @@ class _AboutKeysState extends State<AboutKeys> {
 
   Future<FirebasePostContent?> readPost() async {
     //Get single document by ID
-    final docUser =
-    FirebaseFirestore.instance.collection('/content').doc('about_keys');
+    final docUser = FirebaseFirestore.instance.collection('/content').doc('about_keys');
     final snapshot = await docUser.get();
 
     if (snapshot.exists) {

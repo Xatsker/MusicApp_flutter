@@ -40,7 +40,7 @@ class TheoryCategoriesPage extends StatelessWidget {
                   itemBuilder: (_, index) {
                     if (argumentId == categoryData[index].sectionId) {
                       return PostTile(
-                          tileColor: Theme.of(context).primaryColor,
+                          tileColor: Colors.indigo,
                           postTitle: categoryData[index].title.toUpperCase(),
                           onTileTap: () => Navigator.of(context).pushNamed(categoryData[index].pathToPost, arguments: categoryData[index].title));
                     }

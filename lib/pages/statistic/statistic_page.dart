@@ -13,32 +13,32 @@ class StatisticPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.indigo,
-      title: const Text('Статистика'),
-      centerTitle: true,
-    ),
-    body:  Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ModifiedTitleText('Statistic'),
-            for (int i = 0; i < statisticPost.length; i++)
-              PostTile(
-                tileColor: Theme.of(context).primaryColor,
-                postTitle: statisticPost[i].title.toUpperCase(),
-                onTileTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StatisticPosts(statisticId: i+1)),
+        backgroundColor: Colors.indigo,
+        title: const Text('Статистика'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ModifiedTitleText('Statistic'),
+              for (int i = 0; i < statisticPost.length; i++)
+                PostTile(
+                  tileColor: Colors.indigo,
+                  postTitle: statisticPost[i].title.toUpperCase(),
+                  onTileTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => StatisticPosts(statisticId: i + 1)),
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }

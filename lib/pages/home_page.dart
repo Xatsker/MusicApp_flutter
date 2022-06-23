@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 300,
             ),
-            SvgPicture.asset("assets/images/treble_key/Skripichniy.svg"),
+            SvgPicture.asset("assets/images/treble_key/Skripichniy.svg", color: Theme.of(context).primaryColor),
             ModifiedTitleText('Notogram'),
           ]),
           ElevatedButton(
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
-            style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
+            // style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
           ),
           const SizedBox(
             height: 33,
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
-            style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
+            // style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
           ),
         ],
       ),
