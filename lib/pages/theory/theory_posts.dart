@@ -23,62 +23,53 @@ class TheoryPosts extends StatelessWidget {
           icon: Icon(Icons.arrow_back),
         ),
       ),
-      body: ListView(
-        children: [
-          SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: post.svg,
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Card(
-                      shadowColor: Colors.indigo,
-                      elevation: 3.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            post.title,
-                            style: Theme.of(context).textTheme.headline3,
-                            textAlign: TextAlign.center,
+      body: ListView(children: [
+        SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: post.svg,
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Card(
+                    shadowColor: Colors.indigo,
+                    elevation: 3.0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          post.title,
+                          style: Theme.of(context).textTheme.headline3,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            post.content,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(fontSize: 15),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              post.content,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  fontSize: 15
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: post.image
-                          ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(padding: const EdgeInsets.all(8.0), child: post.image),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }

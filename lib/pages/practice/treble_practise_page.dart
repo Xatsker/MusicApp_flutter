@@ -131,7 +131,7 @@ class TestPractisePageState extends State<TestPractisePage> {
         body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
           Padding(
             padding: const EdgeInsets.only(left: 15.0),
-            child: Text(this.testType, style: Theme.of(context).textTheme.headline3),
+            child: Text(this.testType, style: Theme.of(context).textTheme.headline4),
           ),
           const SizedBox(height: 70),
           ClefImage(
@@ -144,7 +144,7 @@ class TestPractisePageState extends State<TestPractisePage> {
                   ],
             clefColor: Colors.black,
             noteColor: Colors.black,
-            size: Size(MediaQuery.of(context).size.width, 150),
+            size: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height * (testType == 'Скрипичный ключ' ? 0.21 : 0.28)),
           ),
           Text(runner.time.toString()),
           ElevatedButton(

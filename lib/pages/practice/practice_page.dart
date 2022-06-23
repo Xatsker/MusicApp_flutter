@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/pages/navbar.dart';
 import 'package:music_app/pages/statistic/statistic_page.dart';
 import 'package:piano/piano.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/modifiedTitleText.dart';
 
@@ -43,9 +45,9 @@ class _PracticePageState extends State<PracticePage> {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => StatisticPage()));
+                Provider.of<NavbarProvider>(context, listen: false).onTap(3);
               },
-              icon: Icon(Icons.stacked_bar_chart)),
+              icon: const Icon(Icons.stacked_bar_chart)),
         ],
       ),
       body: Column(
@@ -72,7 +74,7 @@ class _PracticePageState extends State<PracticePage> {
           const SizedBox(
             height: 33,
           ),
-          buildElevatedButton(context, '/alt', 'альтовый ключ')
+          buildElevatedButton(context, '/alt', 'ключ до')
         ],
       ),
     );

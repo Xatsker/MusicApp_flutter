@@ -44,6 +44,7 @@ Future main() async {
         providers: [
           ChangeNotifierProvider(create: (_) => StatisticData()),
           ChangeNotifierProvider(create: (_) => Screens()),
+          ChangeNotifierProvider(create: (_) => NavbarProvider()),
         ],
         child: buildMaterialApp(),
       )));
