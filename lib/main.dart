@@ -20,6 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'data/theme_manager.dart';
 import 'pages/theory/theory_posts/alto_key.dart';
 import 'pages/theory/theory_posts/bass_key.dart';
 import 'pages/theory/theory_posts/durations.dart';
@@ -31,6 +32,7 @@ import 'pages/theory/theory_posts/tones.dart';
 import 'pages/theory/theory_posts/treble_key.dart';
 
 late Box box;
+late Box settingBox;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,50 +40,48 @@ Future main() async {
   await Hive.initFlutter();
   Hive.registerAdapter<Statistic>(StatisticAdapter());
   box = await Hive.openBox<Statistic>("statistic");
-  SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-      .then((_) => runApp(MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => StatisticData()),
-              ChangeNotifierProvider(create: (_) => Screens()),
-            ],
-            child: buildMaterialApp(),
-          )));
-  }
-  class buildMaterialApp extends StatefulWidget {
-    const buildMaterialApp({Key? key}) : super(key: key);
+  settingBox = await Hive.openBox<dynamic>("setting");
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) => runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => StatisticData()),
+          ChangeNotifierProvider(create: (_) => Screens()),
+          ChangeNotifierProvider(create: (_) => NavbarProvider()),
+          ChangeNotifierProvider(create: (_) => ThemeNotifier()),
+        ],
+        child: buildMaterialApp(),
+      )));
+}
 
-    @override
-    State<buildMaterialApp> createState() => _buildMaterialAppState();
-  }
+class buildMaterialApp extends StatefulWidget {
+  const buildMaterialApp({Key? key}) : super(key: key);
 
-  class _buildMaterialAppState extends State<buildMaterialApp> {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
+  @override
+  State<buildMaterialApp> createState() => _buildMaterialAppState();
+}
+
+class _buildMaterialAppState extends State<buildMaterialApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeNotifier>(
+      builder: (context, theme, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primarySwatch: Colors.indigo,
-            textTheme: TextTheme(
-              bodyLarge: TextStyle(
-                  fontFamily: "ReenieBeanie",
-                  fontSize: 70,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black),
-            ),
-          cardColor: Colors.white,
-        ),
-        darkTheme: ThemeData(
-            scaffoldBackgroundColor: Colors.indigo,
-            primarySwatch: Colors.teal,
-          textTheme:
-          Theme.of(context).textTheme.apply(
-            bodyColor: Colors.white,
-            displayColor: Colors.white,
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
-          cardColor: Colors.teal
-        ),
+        theme: theme.getTheme(),
+        // theme: ThemeData(
+        //   primarySwatch: Colors.indigo,
+        //   textTheme: TextTheme(
+        //     bodyText1: TextStyle(fontFamily: "ReenieBeanie", fontSize: 70, fontWeight: FontWeight.normal, color: Colors.black),
+        //   ),
+        //   cardColor: Colors.white,
+        // ),
+        // darkTheme: ThemeData(
+        //     scaffoldBackgroundColor: Colors.indigo,
+        //     primarySwatch: Colors.teal,
+        //     textTheme: Theme.of(context).textTheme.apply(
+        //           bodyColor: Colors.white,
+        //           displayColor: Colors.white,
+        //         ),
+        //     iconTheme: IconThemeData(color: Colors.white),
+        //     cardColor: Colors.teal),
         initialRoute: '/',
         routes: {
           '/': (context) => Navbar(),
@@ -114,6 +114,7 @@ Future main() async {
           FirebaseMain.route: (context) => FirebaseMain(),
           UserPage.route: (context) => UserPage()
         },
-      );
-    }
+      ),
+    );
   }
+}

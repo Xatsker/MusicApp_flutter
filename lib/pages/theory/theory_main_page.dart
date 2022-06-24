@@ -33,10 +33,8 @@ class TheoryPage extends StatelessWidget {
                 itemCount: theoryData.length,
                 itemBuilder: (_, index) {
                   return Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 33.0, left: 10, right: 10),
-                    child: _buildElevatedButton(
-                        context, theoryData[index].title, theoryData[index].id),
+                    padding: const EdgeInsets.only(bottom: 33.0, left: 10, right: 10),
+                    child: _buildElevatedButton(context, theoryData[index].title, theoryData[index].id),
                   );
                 }),
           ),
@@ -45,16 +43,14 @@ class TheoryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildElevatedButton(
-      BuildContext context, String title, int argumentId) {
+  Widget _buildElevatedButton(BuildContext context, String title, int argumentId) {
     return ElevatedButton(
       onPressed: () {
         /* Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const TheoryPosts(postId: 0))
               );*/
-        Navigator.of(context)
-            .pushNamed(TheoryCategoriesPage.route, arguments: argumentId);
+        Navigator.of(context).pushNamed(TheoryCategoriesPage.route, arguments: argumentId);
       },
       child: Text(
         title,
@@ -63,9 +59,7 @@ class TheoryPage extends StatelessWidget {
           letterSpacing: 1.5,
         ),
       ),
-      style: ElevatedButton.styleFrom(
-          fixedSize: const Size(328, 50),
-          primary: Theme.of(context).primaryColor),
+      // style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
     );
   }
 }

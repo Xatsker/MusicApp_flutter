@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/pages/navbar.dart';
 import 'package:music_app/pages/statistic/statistic_page.dart';
 import 'package:piano/piano.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/modifiedTitleText.dart';
 
@@ -14,40 +16,24 @@ class PracticePage extends StatefulWidget {
 class _PracticePageState extends State<PracticePage> {
   Map<String, Map<String, NoteRange>> practiceData = {
     "bass": {
-      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 5)),
-      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 3),
-          NotePosition(note: Note.C, octave: 5)),
-      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 2),
-          NotePosition(note: Note.C, octave: 5)),
+      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 4)),
+      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 3), NotePosition(note: Note.C, octave: 4)),
+      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 2), NotePosition(note: Note.C, octave: 4)),
     },
     "alt": {
-      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 5)),
-      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 6)),
-      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 7)),
+      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 4)),
+      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 5)),
+      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 6)),
     },
     "treble": {
-      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 5)),
-      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 6)),
-      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 4),
-          NotePosition(note: Note.C, octave: 7)),
+      "Уровень 1": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 4)),
+      "Уровень 2": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 5)),
+      "Уровень 3": NoteRange(NotePosition(note: Note.C, octave: 4), NotePosition(note: Note.C, octave: 6)),
     }
   };
 
   List<String> levelItems = ["Уровень 1", "Уровень 2", "Уровень 3"];
   String levelSelectedItem = "Уровень 1";
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    //changeLevel(context, levelItems, levelSelectedItem);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +45,9 @@ class _PracticePageState extends State<PracticePage> {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => StatisticPage()));
+                Provider.of<NavbarProvider>(context, listen: false).onTap(3);
               },
-              icon: Icon(Icons.stacked_bar_chart)),
+              icon: const Icon(Icons.stacked_bar_chart)),
         ],
       ),
       body: Column(
@@ -77,9 +62,7 @@ class _PracticePageState extends State<PracticePage> {
                 ),
                 ModifiedTitleText('Practice'),
               ]),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: changeLevel(context, levelItems, levelSelectedItem)),
+          Padding(padding: const EdgeInsets.all(8.0), child: changeLevel(context, levelItems, levelSelectedItem)),
           const SizedBox(
             height: 33,
           ),
@@ -91,7 +74,7 @@ class _PracticePageState extends State<PracticePage> {
           const SizedBox(
             height: 33,
           ),
-          buildElevatedButton(context, '/alt', 'альтовый ключ')
+          buildElevatedButton(context, '/alt', 'ключ до')
         ],
       ),
     );
@@ -100,32 +83,25 @@ class _PracticePageState extends State<PracticePage> {
   Widget buildElevatedButton(BuildContext context, String path, String title) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, path, arguments: [
-          practiceData["alt"]![levelSelectedItem],
-          levelSelectedItem
-        ]);
+        Navigator.pushNamed(context, path, arguments: [practiceData[path.substring(1)]![levelSelectedItem], levelSelectedItem]);
       },
       child: Text(
         title.toUpperCase(),
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: "Roboto",
           letterSpacing: 1.5,
         ),
       ),
-      style: ElevatedButton.styleFrom(
-          fixedSize: const Size(328, 50),
-          primary: Theme.of(context).primaryColor),
+      // style: ElevatedButton.styleFrom(fixedSize: const Size(328, 50), primary: Theme.of(context).primaryColor),
     );
   }
 
-  Widget changeLevel(BuildContext context, List items, String selectedItem) =>
-      DropdownButtonFormField<String>(
+  Widget changeLevel(BuildContext context, List items, String selectedItem) => DropdownButtonFormField<String>(
         decoration: InputDecoration(
           //labelText: "Уровни",
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide:
-                BorderSide(width: 3, color: Theme.of(context).primaryColor),
+            borderSide: BorderSide(width: 3, color: Theme.of(context).primaryColor),
           ),
         ),
         value: selectedItem,
